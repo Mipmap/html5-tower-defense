@@ -1,22 +1,18 @@
 # HTML5 tower defense game
- ![Screenshot](screenshots/4.png)
- * Author: oldj
- * Email: oldj.wu@gmail.com
- * Blog: [http://oldj.net/](http://oldj.net/)
- * Source: https://github.com/oldj/html5-tower-defense
- * License: MIT
+![Screenshot](screenshots/4.png)
 
+This is a fork of Oldj's [HTML5 Tower Defense](https://github.com/oldj/html5-tower-defense).
+The purpose of the fork is to host it on [github.io](https://mipmap.github.io/), and translate the repo to english.  So far, only the READMEs have been translated.  Anyone know of a tool to iterate over source files and run the code comments through Google translate?
 
 ## Run
 
-Go to the `src` or `build` directory and open td.html with a browser (like Chrome, IE9) to run the game.
-
-Or check out the [online demo](http://oldj.net/static/html5-tower-defense/td.html).
+Check out the [online demo](http://mipmap.github.io).
+Or go to the `src` or `build` directory and open `td.html` with a browser to run the game.
 
 
 ## Description
 
-1. This game is completely implemented using HTML5 / JavaScript / CSS, and does not use Flash, SilverLight and other technologies.
+1. This game is completely implemented using HTML5 / JavaScript / CSS, and does not use Flash, SilverLight or other technologies.
 2. This version does not use images, all the items in the game are drawn using HTML5.
 3. Some parts of this version have been specifically optimized for IE9 and can run under IE9. 
 
