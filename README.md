@@ -34,13 +34,13 @@ Or check out the [online demo](http://oldj.net/static/html5-tower-defense/td.htm
 
 ## Cheat methods
 
-To facilitate testing, this game has several built-in cheat methods, you can enter the following commands in the browser address bar during the game (if the browser supports [bookmarklets](https://en.wikipedia.org/wiki/Bookmarklet)):
+To facilitate testing, this game has several built-in cheat methods, you can enter the following commands in the browser address bar during the game (if debug is enabled in the source and the browser supports [bookmarklets](https://en.wikipedia.org/wiki/Bookmarklet)):
 
-1. Add 1 million dollars: `javascript:_TD.cheat="money+";void(0);`
-2. Double the difficulty: `javascript:_TD.cheat="difficulty+";void(0);`
-3. Halve the difficulty: `javascript:_TD.cheat="difficulty-";void(0);`
-4. Health recovery: `javascript:_TD.cheat="life+";void(0);`
-5. Health is reduced to a minimum: `javascript:_TD.cheat="life-";void(0);`
+1. Add 1 million dollars: `javascript:_TD.cheat="money+";`
+2. Double the difficulty: `javascript:_TD.cheat="difficulty+";`
+3. Halve the difficulty: `javascript:_TD.cheat="difficulty-";`
+4. Health recovery: `javascript:_TD.cheat="life+";`
+5. Health is reduced to a minimum: `javascript:_TD.cheat="life-";`
 
 Note that the above cheat method is mainly for test design, please use it as appropriate during the normal game, otherwise it may reduce the fun of the game. 
 
