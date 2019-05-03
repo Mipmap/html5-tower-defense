@@ -1,8 +1,8 @@
-说明：
+ Description:
 
-如果你是从 github.com 等地方下载的本源码，则此文件夹下的文件可能不是最新的。
-请转到 ../tools/ 目录，执行：
+ If you downloaded this source from a place like github.com, the files in this folder may not be up to date.
+ Go to the ../tools/ directory and execute:
 
-python deploy.py
+ Python deploy.py
 
-以便将 ../src/ 目录下的最新代码合并、压缩到本目录下。
+ In order to merge and compress the latest code in the ../src/ directory into this directory.
