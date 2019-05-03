@@ -1,5 +1,5 @@
 # HTML5 tower defense game
-
+ ![Screenshot](screenshots/4.png)
  * Author: oldj
  * Email: oldj.wu@gmail.com
  * Blog: [http://oldj.net/](http://oldj.net/)
