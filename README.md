@@ -46,7 +46,7 @@ Note that the above cheat method is mainly for test design, please use it as app
 
 
 ## Update history
-
+ - 2019-05-03 Create fork to run from github.io, and translate readme to english.
  - 2015-09-06 Support for retina display.
  - 2011-01-01 Adjust the parameters, and according to the netizen's suggestion, add a check when building a new building, and it is forbidden to surround the monster with the building (v0.1.14).
  - 2010-12-29 According to the netizen's suggestion, increase the automatic life recovery function (recover 5 points every 5 waves, and restore 10 points every 10 waves). Adjusting the parameters reduces the range of the laser gun and enhances the power of the heavy machine gun (v0.1.12).
