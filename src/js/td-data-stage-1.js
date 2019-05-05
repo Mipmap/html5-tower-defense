@@ -106,37 +106,39 @@ _TD.a.push(function (TD) {
 					y: TD.padding,
 					entrance: [0, 0],
 					exit: [15, 15],
-					grids_cfg: [
-						{
-							pos: [3, 3],
-							//building: "cannon",
-							passable_flag: 0
-						},
-						{
-							pos: [7, 15],
-							build_flag: 0
-						},
-						{
-							pos: [4, 12],
-							building: "wall"
-						},
-						{
-							pos: [4, 13],
-							building: "wall"
-							//}, {
-							//pos: [11, 9],
-							//building: "cannon"
-							//}, {
-							//pos: [5, 2],
-							//building: "HMG"
-							//}, {
-							//pos: [14, 9],
-							//building: "LMG"
-							//}, {
-							//pos: [3, 14],
-							//building: "LMG"
-						}
-					]
+					grids_cfg: []
+
+					// grids_cfg: [
+					// 	{
+					// 		pos: [3, 3],
+					// 		//building: "cannon",
+					// 		passable_flag: 0
+					// 	},
+					// 	{
+					// 		pos: [7, 15],
+					// 		build_flag: 0
+					// 	},
+					// 	{
+					// 		pos: [4, 12],
+					// 		building: "wall"
+					// 	},
+					// 	{
+					// 		pos: [4, 13],
+					// 		building: "wall"
+					// 		//}, {
+					// 		//pos: [11, 9],
+					// 		//building: "cannon"
+					// 		//}, {
+					// 		//pos: [5, 2],
+					// 		//building: "HMG"
+					// 		//}, {
+					// 		//pos: [14, 9],
+					// 		//building: "LMG"
+					// 		//}, {
+					// 		//pos: [3, 14],
+					// 		//building: "LMG"
+					// 	}
+					// ]
 				},
 				panel: {
 					x: TD.padding * 2 + TD.grid_size * 16,
@@ -178,7 +180,7 @@ _TD.a.push(function (TD) {
 					max_wave: -1,
 					wave_damage: 0, // 当前一波怪物造成了多少点生命值的伤害
 					max_monsters_per_wave: 100, // 每一波最多多少怪物
-					money: 1000,
+					money: 10000,
 					score: 0, // 开局时的积分
 					life: 100,
 					waves: [ // 这儿只定义了前 10 波怪物，从第 11 波开始自动生成

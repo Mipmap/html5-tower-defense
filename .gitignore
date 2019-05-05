@@ -6,3 +6,5 @@ src/css/c-min.css
 node_modules
 npm-debug.log
 .vscode/settings.json
+.DS_Store
+.vscode/launch.json
