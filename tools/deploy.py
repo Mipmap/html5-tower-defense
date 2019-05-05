@@ -45,7 +45,7 @@ def merge():
 		"td-obj-building.js", "td-obj-monster.js",
 		"td-obj-panel.js", "td-data-stage-1.js",
 		"td-cfg-buildings.js", "td-cfg-monsters.js",
-		"td-render-buildings.js", "td-msg.js",
+		"td-render-buildings.js", "td-msg-en.js",
 		"td-walk.js",
 	]
 	build_folder = "../build"
