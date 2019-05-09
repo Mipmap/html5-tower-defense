@@ -7,7 +7,7 @@ This is a fork of Oldj's [HTML5 Tower Defense](https://github.com/oldj/html5-tow
 - [x] READMEs translated to English
 - [ ] Code comments translated to English
 - [ ] Expand/shrink canvas to fit the available window
-- [ ] Place buildings when paused
+- [ ] Place/sell buildings while paused
 - [ ] Place buildings over existing ones, automatically sells existing one
 - [ ] Move tooltip out of playing area to bottom or sidebar
 - [ ] Building strength meter and/or color
