@@ -18,13 +18,13 @@ _TD.a.push(function (TD) {
 			cfg = cfg || {};
 			this.map = cfg.map;
 			this.scene = this.map.scene;
-			this.mx = cfg.mx; // 在 map 中的格子坐标
+			this.mx = cfg.mx; // The grid coordinates in the map
 			this.my = cfg.my;
 			this.width = TD.grid_size;
 			this.height = TD.grid_size;
 			this.is_entrance = this.is_exit = false;
-			this.passable_flag = 1; // 0: 不可通过; 1: 可通过
-			this.build_flag = 1;// 0: 不可修建; 1: 可修建; 2: 已修建
+			this.passable_flag = 1; // 0: not passable; 1: passable
+			this.build_flag = 1;// 0: not buildable; 1: not built; 2: built
 			this.building = null;
 			this.caculatePos();
 		},
@@ -208,7 +208,8 @@ _TD.a.push(function (TD) {
 		 */
 		onEnter: function () {
 			if (this.map.is_main_map && TD.mode == "build") {
-				if (this.build_flag == 1) {
+				// Allow building over existing building
+				if (this.build_flag == 1 || this.build_flag == 2) {
 					this.map.pre_building.show();
 					this.map.pre_building.locate(this);
 				} else {
