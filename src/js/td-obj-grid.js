@@ -11,8 +11,8 @@
 // _TD.a.push begin
 _TD.a.push(function (TD) {
 
-	// grid 对象的属性、方法。注意属性中不要有数组、对象等
-	// 引用属性，否则多个实例的相关属性会发生冲突
+	// The properties and methods of the grid object. Note that there are no arrays, objects, etc. in the properties.
+	// Reference properties, otherwise the related properties of multiple instances will conflict
 	var grid_obj = {
 		_init: function (cfg) {
 			cfg = cfg || {};
@@ -30,7 +30,7 @@ _TD.a.push(function (TD) {
 		},
 
 		/**
-		 * 根据 map 位置及本 grid 的 (mx, my) ，计算格子的位置
+		 * Calculate the position of the grid based on the map position and the (mx, my) of the grid
 		 */
 		caculatePos: function () {
 			this.x = this.map.x + this.mx * TD.grid_size;
@@ -42,7 +42,7 @@ _TD.a.push(function (TD) {
 		},
 
 		/**
-		 * 检查如果在当前格子建东西，是否会导致起点与终点被阻塞
+		 * Check if building something in the current grid will cause the start and end points to be blocked
 		 */
 		checkBlock: function () {
 			if (this.is_entrance || this.is_exit) {
@@ -77,7 +77,7 @@ _TD.a.push(function (TD) {
 		},
 
 		/**
-		 * 购买建筑
+		 * Buying a building
 		 * @param building_type {String}
 		 */
 		buyBuilding: function (building_type) {
@@ -92,12 +92,13 @@ _TD.a.push(function (TD) {
 		},
 
 		/**
-		 * 在当前格子添加指定类型的建筑
+		 * Add a specified type of building to the current grid
 		 * @param building_type {String}
 		 */
 		addBuilding: function (building_type) {
 			if (this.building) {
-				// 如果当前格子已经有建筑，先将其移除
+				// If the current grid already has a building, remove it first.
+				// (NOTE: This is never hit because addBuilding won't get called if the grid square is occupied.)
 				this.removeBuilding();
 			}
 
@@ -118,7 +119,7 @@ _TD.a.push(function (TD) {
 		},
 
 		/**
-		 * 移除当前格子的建筑
+		 * Remove the current grid building
 		 */
 		removeBuilding: function () {
 			if (this.build_flag == 2)
@@ -129,7 +130,7 @@ _TD.a.push(function (TD) {
 		},
 
 		/**
-		 * 在当前建筑添加一个怪物
+		 * Add a monster to the current building
 		 * @param monster
 		 */
 		addMonster: function (monster) {
@@ -139,7 +140,7 @@ _TD.a.push(function (TD) {
 		},
 
 		/**
-		 * 高亮当前格子
+		 * Highlight the current grid
 		 * @param show {Boolean}
 		 */
 		hightLight: function (show) {
@@ -166,7 +167,7 @@ _TD.a.push(function (TD) {
 			}
 
 			if (this.passable_flag == 0) {
-				// 不可通过
+				// Not passable
 				ctx.fillStyle = "#fcc";
 				ctx.beginPath();
 				ctx.fillRect(px, py, this.width, this.height);
@@ -175,7 +176,7 @@ _TD.a.push(function (TD) {
 			}
 
 			/**
-			 * 画入口及出口
+			 * Drawing entrance and exit
 			 */
 			if (this.is_entrance || this.is_exit) {
 				ctx.lineWidth = 1;
@@ -203,7 +204,7 @@ _TD.a.push(function (TD) {
 		},
 
 		/**
-		 * 鼠标进入当前格子事件
+		 * Mouse enters the current grid event
 		 */
 		onEnter: function () {
 			if (this.map.is_main_map && TD.mode == "build") {
@@ -232,32 +233,33 @@ _TD.a.push(function (TD) {
 		},
 
 		/**
-		 * 鼠标移出当前格子事件
+		 * Mouse out of the current grid event
 		 */
 		onOut: function () {
-			// 如果当前气球提示指向本格子，将其隐藏
+			// If the current balloon tip points to this grid, hide it
 			if (this.scene.panel.balloontip.el == this) {
 				this.scene.panel.balloontip.hide();
 			}
 		},
 
 		/**
-		 * 鼠标点击了当前格子事件
+		 * The mouse clicked on the current grid event
 		 */
 		onClick: function () {
 			if (this.scene.state != 1) return;
 
 			if (TD.mode == "build" && this.map.is_main_map && !this.building) {
-				// 如果处于建设模式下，并且点击在主地图的空格子上，则尝试建设指定建筑
+				// If you are in the build mode and click on the space in the main map, 
+				// try to build the designated building
 				if (this.checkBlock()) {
-					// 起点与终点之间被阻塞，不能修建
+					// Block between start and end points, can't build
 					this.scene.panel.balloontip.msg(this._block_msg, this);
 				} else {
-					// 购买建筑
+					// Buying a building
 					this.buyBuilding(this.map.pre_building.type);
 				}
 			} else if (!this.building && this.map.selected_building) {
-				// 取消选中建筑
+				// Uncheck building
 				this.map.selected_building.toggleSelected();
 				this.map.selected_building = null;
 			}
@@ -266,12 +268,12 @@ _TD.a.push(function (TD) {
 
 	/**
 	 * @param id {String}
-	 * @param cfg {object} 配置对象
-	 *         至少需要包含以下项：
+	 * @param cfg {object} Configuration object
+	 *         At least the following items need to be included：
 	 *         {
-	 *			 mx: 在 map 格子中的横向坐标,
-	 *			 my: 在 map 格子中的纵向坐标,
-	 *			 map: 属于哪个 map,
+	 *			 mx: Horizontal coordinate in the map grid,
+	 *			 my: Vertical coordinate in the map grid,
+	 *			 map: Which map,
 	 *		 }
 	 */
 	TD.Grid = function (id, cfg) {
