@@ -5,13 +5,14 @@ This is a fork of Oldj's [HTML5 Tower Defense](https://github.com/oldj/html5-tow
 
 - [x] Hosted on [github.io](https://mipmap.github.io/)
 - [x] READMEs translated to English
+- [ ] Rework UI so mode buttons (buy, upgrade, sell) are persistent and clicking grid always does that action 
 - [ ] Place buildings over existing ones, automatically sells existing one
-- [ ] Code comments translated to English
+- [ ] Code comments translated to English (WIP)
 - [ ] Expand/shrink canvas to fit the available window
 - [ ] Option to adjust grid size to fit window before start
 - [ ] Place/sell buildings while paused
 - [ ] Click & drag (or touch & drag) to place multiple buildings
-- [ ] Move tooltip out of playing area to bottom or sidebar
+- [ ] Move tooltip out of playing area to a status area (bottom or side bar), or away from clicked area (to see it on touch)
 - [ ] Building strength meter and/or color
 - [ ] Hotkey ('u') or mode (double click) for upgrading multiple buildings quickly
 - [ ] Adjust gameplay for more building time (more money at start) and watching destruction (slow down later levels)

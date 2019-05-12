@@ -248,7 +248,7 @@ _TD.a.push(function (TD) {
 		 */
 		onClick: function () {
 			if (this.scene.state != 1) return;
-
+			TD.log("onClick: this.building = " + this.building + " TD.mode = " + TD.mode);
 			if (TD.mode == "build" && this.map.is_main_map && !this.building) {
 				// If you are in the build mode and click on the space in the main map, 
 				// try to build the designated building

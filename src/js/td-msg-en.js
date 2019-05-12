@@ -40,6 +40,7 @@ _TD.a.push(function (TD) {
 		"sell": "Sell ${0} for $${1}",
 		"upgrade_success": "Upgrade success! ${0} upgrades to level ${1}. Next upgrade will take $${2}.",
 		"monster_info": "Monster: Life ${0}, Shield ${1}, Speed ${2}, Damage ${3}",
+		"button_build_text": "Build",
 		"button_upgrade_text": "Upgrade",
 		"button_sell_text": "Sell",
 		"button_start_text": "Start",

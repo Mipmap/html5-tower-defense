@@ -40,6 +40,7 @@ _TD.a.push(function (TD) {
 		"sell": "出售 ${0}，可获得 $${1}",
 		"upgrade_success": "升级成功，${0} 已升级到 ${1} 级！下次升级需要 $${2}。",
 		"monster_info": "怪物: 生命 ${0}，防御 ${1}，速度 ${2}，伤害 ${3}",
+		"button_build_text": "建立", // 建立 (set up) or 建造 (put up)?
 		"button_upgrade_text": "升级",
 		"button_sell_text": "出售",
 		"button_start_text": "开始",

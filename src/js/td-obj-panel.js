@@ -141,7 +141,7 @@ _TD.a.push(function (TD) {
 
 		},
 		render: function () {
-			// 画状态文字
+			// Drawing status text
 			var ctx = TD.ctx;
 
 			ctx.textAlign = "left";
@@ -160,7 +160,7 @@ _TD.a.push(function (TD) {
 			ctx.closePath();
 
 			if (this._life_recover_wait) {
-				// 画生命恢复提示
+				// Painting life recovery tips
 				var a = this._life_recover_wait / this._life_recover_wait2;
 				ctx.fillStyle = "rgba(255, 0, 0, " + a + ")";
 				ctx.font = "bold " + (12 * _TD.retina) + "px 'Verdana'";
@@ -170,16 +170,16 @@ _TD.a.push(function (TD) {
 				this._life_recover_wait --;
 			}
 
-			// 在右下角画版本信息
+			// Draw version information in the lower right corner
 			ctx.textAlign = "right";
 			ctx.fillStyle = "#666";
 			ctx.font = "normal " + (12 * _TD.retina) + "px 'Courier New'";
 			ctx.beginPath();
-			ctx.fillText("version: " + TD.version + " | oldj.net", TD.stage.width - TD.padding,
+			ctx.fillText("version: " + TD.version, TD.stage.width - TD.padding,
 				TD.stage.height - TD.padding * 2);
 			ctx.closePath();
 
-			// 在左下角画FPS信息
+			// Draw FPS information in the lower left corner
 			ctx.textAlign = "left";
 			ctx.fillStyle = "#666";
 			ctx.font = "normal " + (12 * _TD.retina) + "px 'Courier New'";
