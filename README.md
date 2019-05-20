@@ -5,7 +5,7 @@ This is a fork of Oldj's [HTML5 Tower Defense](https://github.com/oldj/html5-tow
 
 - [x] Hosted on [github.io](https://mipmap.github.io/)
 - [x] READMEs translated to English
-- [ ] Rework UI so mode buttons (buy, upgrade, sell) are persistent and clicking grid always does that action 
+- [ ] Rework UI so mode buttons (buy, upgrade, sell) are persistent and clicking grid always does that action (if appropriate)
 - [ ] Place buildings over existing ones, automatically sells existing one
 - [ ] Code comments translated to English (WIP)
 - [ ] Expand/shrink canvas to fit the available window

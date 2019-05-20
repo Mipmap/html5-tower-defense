@@ -59,16 +59,23 @@ _TD.a.push(function (TD) {
 		},
 
 		/**
-		 * 升级本建筑需要的花费
+		 * Cost of upgrading the building
 		 */
 		getUpgradeCost: function () {
 			return Math.floor(this.money * 0.75);
 		},
 
 		/**
-		 * 出售本建筑能得到多少钱
+		 * How much can I get for the sale of this building?
 		 */
 		getSellMoney: function () {
+			return Math.floor(this.money * 0.5) || 1;
+		},
+
+		/**
+		 * Cost of setting up the building
+		 */
+		getBuyCost: function () {
 			return Math.floor(this.money * 0.5) || 1;
 		},
 
@@ -115,21 +122,23 @@ _TD.a.push(function (TD) {
 				}
 			}
 
-			// 如果是选中 / 取消选中主地图上的建筑，显示 / 隐藏对应的操作按钮
+			// If the building on the main map is selected/deselected, the corresponding action buttons are displayed/hidden
 			if (this.map.is_main_map) {
 				if (this.map.selected_building) {
 					this.scene.panel.btn_upgrade.show();
 					this.scene.panel.btn_sell.show();
+					this.scene.panel.btn_build.show();
 					this.updateBtnDesc();
 				} else {
 					this.scene.panel.btn_upgrade.hide();
 					this.scene.panel.btn_sell.hide();
+					this.scene.panel.btn_build.hide();
 				}
 			}
 		},
 
 		/**
-		 * 生成、更新升级按钮的说明文字
+		 * Generate and update the description text of the action buttons
 		 */
 		updateBtnDesc: function () {
 			this.scene.panel.btn_upgrade.desc = TD._t(
@@ -143,6 +152,11 @@ _TD.a.push(function (TD) {
 					TD._t("building_name_" + this.type),
 					this.getSellMoney()
 				]);
+			this.scene.panel.btn_build.desc = TD._t(
+				"build", [
+					TD._t("building_name_" + this.type),
+					this.getBuyCost()
+				]);				
 		},
 
 		/**
@@ -184,7 +198,7 @@ _TD.a.push(function (TD) {
 		/**
 		 * 寻找一个目标（怪物）
 		 */
-		findTaget: function () {
+		findTarget: function () {
 			if (!this.is_weapon || this.is_pre_building || !this.grid) return;
 
 			var cx = this.cx, cy = this.cy,
@@ -318,6 +332,7 @@ _TD.a.push(function (TD) {
 			this.map.checkHasWeapon();
 			this.scene.panel.btn_upgrade.hide();
 			this.scene.panel.btn_sell.hide();
+			this.scene.panel.btn_build.hide();
 			this.scene.panel.balloontip.hide();
 		},
 
@@ -328,7 +343,7 @@ _TD.a.push(function (TD) {
 					this.wait_blink = this._default_wait_blink;
 			}
 
-			this.findTaget();
+			this.findTarget();
 			this.tryToFire();
 		},
 
@@ -379,7 +394,7 @@ _TD.a.push(function (TD) {
 		onEnter: function () {
 			if (this.is_pre_building) return;
 
-			var msg = "建筑工事";
+			var msg = "Construction work";
 			if (this.map.is_main_map) {
 				msg = TD._t("building_info" + (this.type == "wall" ? "_wall" : ""), [TD._t("building_name_" + this.type), this.level, this.damage, this.speed, this.range, this.killed]);
 			} else {

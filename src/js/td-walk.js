@@ -12,7 +12,7 @@
 _TD.a.push(function (TD) {
 
 	/**
-	 * 使用 A* 算法（Dijkstra算法？）寻找从 (x1, y1) 到 (x2, y2) 最短的路线
+	 * Use the A* algorithm (Dijkstra algorithm?) to find the shortest route from (x1, y1) to (x2, y2)
 	 *
 	 */
 	TD.FindWay = function (w, h, x1, y1, x2, y2, f_passable) {
@@ -36,7 +36,7 @@ _TD.a.push(function (TD) {
 	TD.FindWay.prototype = {
 		_init: function () {
 			if (this.x1 == this.x2 && this.y1 == this.y2) {
-				// 如果输入的坐标已经是终点了
+				// If the entered coordinates are already the end point
 				this.is_arrived = true;
 				this.way = [
 					[this.x1, this.y1]
@@ -45,14 +45,14 @@ _TD.a.push(function (TD) {
 			}
 
 			for (var i = 0; i < this.len; i++)
-				this.m[i] = -2; // -2 表示未探索过，-1 表示不可到达
+				this.m[i] = -2; // -2 means not explored, -1 means unreachable
 
 			this.x = this.x1;
 			this.y = this.y1;
 			this.distance = 0;
 			this.current = [
 				[this.x, this.y]
-			]; // 当前一步探索的格子
+			]; // The grid square that is currently being explored
 
 			this.setVal(this.x, this.y, 0);
 
@@ -69,8 +69,8 @@ _TD.a.push(function (TD) {
 			this.m[p] = v;
 		},
 		/**
-		 * 得到指定坐标的邻居，即从指定坐标出发，1 步之内可以到达的格子
-		 * 目前返回的是指定格子的上、下、左、右四个邻格
+		 * Get the neighbor of the specified coordinates, that is, the grid square that can be reached within 1 step from the specified coordinates.
+		 * Currently returning the top, bottom, left and right four adjacent grid squares of the specified grid square
 		 * @param x {Number}
 		 * @param y {Number}
 		 */
@@ -84,7 +84,7 @@ _TD.a.push(function (TD) {
 			return nbs;
 		},
 		/**
-		 * 取得当前一步可到达的 n 个格子的所有邻格
+		 * Get all the neighbors of the n grid squares that are reachable in the current step
 		 */
 		getAllNeighbors: function () {
 			var nbs = [], nb1, i, c, l = this.current.length;
@@ -96,12 +96,12 @@ _TD.a.push(function (TD) {
 			return nbs;
 		},
 		/**
-		 * 从终点倒推，寻找从起点到终点最近的路径
-		 * 此处的实现是，从终点开始，从当前格子的邻格中寻找值最低（且大于 0）的格子，
-		 * 直到到达起点。
-		 * 这个实现需要反复地寻找邻格，有时邻格中有多个格子的值都为最低，这时就从中
-		 * 随机选取一个。还有一种实现方式是在一开始的遍历中，给每一个到达过的格子添加
-		 * 一个值，指向它的来时的格子（父格子）。
+		 * Push back from the end point to find the closest path from the start point to the end point
+		 * The implementation here is to find the lattice with the lowest value (and greater than 0) from the neighboring cell of the current grid from the end point.
+		 * until you reach the starting point.
+		 * This implementation needs to find the neighbors repeatedly, sometimes the values ​​of multiple grid squares in the neighbor are the lowest, then it is from
+		 * pick one randomly. Another way to do this is to add to each of the arriving grids in the initial traversal
+		 * a value that points to its incoming grid (parent plaid).
 		 */
 		findWay: function () {
 			var x = this.x2,
@@ -120,7 +120,7 @@ _TD.a.push(function (TD) {
 				nbs_len = nbs.length;
 				closest_nbs = [];
 
-				// 在邻格中寻找最小的 v
+				// Find the smallest v in the neighborhood
 				min_v = -1;
 				for (i = 0; i < nbs_len; i++) {
 					v = this.getVal(nbs[i][0], nbs[i][1]);
@@ -128,7 +128,7 @@ _TD.a.push(function (TD) {
 					if (min_v < 0 || min_v > v)
 						min_v = v;
 				}
-				// 找出所有 v 最小的邻格
+				// Find out all v smallest neighbors
 				for (i = 0; i < nbs_len; i++) {
 					nb = nbs[i];
 					if (min_v == this.getVal(nb[0], nb[1])) {
@@ -136,7 +136,7 @@ _TD.a.push(function (TD) {
 					}
 				}
 
-				// 从 v 最小的邻格中随机选取一个作为当前格子
+				// Randomly select one from v the smallest neighbor as the current grid
 				l = closest_nbs.length;
 				i = l > 1 ? Math.floor(Math.random() * l) : 0;
 				nb = closest_nbs[i];
@@ -146,7 +146,7 @@ _TD.a.push(function (TD) {
 			}
 		},
 		/**
-		 * 到达终点
+		 * reach destination
 		 */
 		arrive: function () {
 			this.current = [];
@@ -155,16 +155,16 @@ _TD.a.push(function (TD) {
 			this.findWay();
 		},
 		/**
-		 * 道路被阻塞
+		 * the road is blocked
 		 */
 		blocked: function () {
 			this.current = [];
 			this.is_blocked = true;
 		},
 		/**
-		 * 下一次迭代
-		 * @return {Boolean} 如果返回值为 true ，表示未到达终点，并且道路
-		 *      未被阻塞，可以继续迭代；否则表示不必继续迭代
+		 * Next iteration
+		 * @return {Boolean} If the return value is true , it means that the end point has not been reached, and the road
+         * is not blocked, you can continue iterating; otherwise it means you don't have to continue iterating
 		 */
 		next: function () {
 			var neighbors = this.getAllNeighbors(), nb,
@@ -179,7 +179,7 @@ _TD.a.push(function (TD) {
 				nb = neighbors[i];
 				x = nb[0];
 				y = nb[1];
-				if (this.getVal(x, y) != -2) continue; // 当前格子已探索过
+				if (this.getVal(x, y) != -2) continue; // The current grid square has been explored
 				//grid = this.map.getGrid(x, y);
 				//if (!grid) continue;
 
@@ -187,17 +187,17 @@ _TD.a.push(function (TD) {
 					// 可通过
 
 					/**
-					 * 从起点到当前格子的耗费
-					 * 这儿只是简单地把从起点到当前格子需要走几步作为耗费
-					 * 比较复杂的情况下，可能还需要考虑不同的路面耗费也会不同，
-					 * 比如沼泽地的耗费比平地要多。不过现在的版本中路况没有这么复杂，
-					 * 先不考虑。
+					 * Cost from the starting point to the current grid
+					 * Here is simply a matter of taking a few steps from the starting point to the current grid.
+					 * In more complicated situations, it may be necessary to consider that different roads will cost differently.
+					 * For example, the swamp is more expensive than the flat. However, the road conditions in the current version are not so complicated,
+					 * do not consider it first.
 					 */
 					v = this.distance;
 
 					valid_neighbors.push(nb);
 				} else {
-					// 不可通过或有建筑挡着
+					// Cannot pass or block the building
 					v = -1;
 				}
 

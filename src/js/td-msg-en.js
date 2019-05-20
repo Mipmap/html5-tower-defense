@@ -31,7 +31,7 @@ _TD.a.push(function (TD) {
 		"building_info": "${0}: Level ${1}, Damage ${2}, Speed ${3}, Range ${4}, Kill ${5}",
 		"building_info_wall": "${0}",
 		"building_intro_wall": "Roadblock: monsters could not pass ($${0})",
-		"building_intro_cannon": "Cannon: blance in range and damage ($${0})",
+		"building_intro_cannon": "Cannon: balance in range and damage ($${0})",
 		"building_intro_LMG": "Light Machine Gun: longer range, normal damage ($${0})",
 		"building_intro_HMG": "Heavy Machine Gun: fast shoot, greater damage, normal range ($${0})",
 		"building_intro_laser_gun": "Laser gun: greater damage, 100% hit ($${0})",

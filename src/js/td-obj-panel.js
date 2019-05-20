@@ -53,7 +53,7 @@ _TD.a.push(function (TD) {
 			this.balloontip.addToScene(this.scene, 1, 9);
 
 			// make buttons
-			// 暂停按钮
+			// Pause button
 			this.btn_pause = new TD.Button("panel-btn-pause", {
 				scene: this.scene,
 				x: this.x,
@@ -68,6 +68,7 @@ _TD.a.push(function (TD) {
 						this.text = TD._t("button_continue_text");
 						this.scene.panel.btn_upgrade.hide();
 						this.scene.panel.btn_sell.hide();
+						this.scene.panel.btn_build.hide();
 						this.scene.panel.btn_restart.show();
 						//this.desc = TD._t("button_pause_desc_1");
 					} else if (this.scene.state == 2) {
@@ -77,12 +78,13 @@ _TD.a.push(function (TD) {
 						if (this.scene.map.selected_building) {
 							this.scene.panel.btn_upgrade.show();
 							this.scene.panel.btn_sell.show();
+							this.scene.panel.btn_build.show();
 						}
 						//this.desc = TD._t("button_pause_desc_0");
 					}
 				}
 			});
-			// 重新开始按钮
+			// Restart button
 			this.btn_restart = new TD.Button("panel-btn-restart", {
 				scene: this.scene,
 				x: this.x,
@@ -100,7 +102,7 @@ _TD.a.push(function (TD) {
 					}, 0);
 				}
 			});
-			// 建筑升级按钮
+			// Upgrade button
 			this.btn_upgrade = new TD.Button("panel-btn-upgrade", {
 				scene: this.scene,
 				x: this.x,
@@ -113,7 +115,7 @@ _TD.a.push(function (TD) {
 					this.scene.map.selected_building.tryToUpgrade(this);
 				}
 			});
-			// 建筑出售按钮
+			// Sell button
 			this.btn_sell = new TD.Button("panel-btn-sell", {
 				scene: this.scene,
 				x: this.x,
@@ -124,6 +126,19 @@ _TD.a.push(function (TD) {
 				render_level: this.render_level + 1,
 				onClick: function () {
 					this.scene.map.selected_building.tryToSell(this);
+				}
+			});
+			// Build button
+			this.btn_build = new TD.Button("panel-btn-build", {
+				scene: this.scene,
+				x: this.x,
+				y: this.y + 380 * _TD.retina,
+				is_visiable: false,
+				text: TD._t("button_build_text"),
+				step_level: this.step_level,
+				render_level: this.render_level + 1,
+				onClick: function () {
+					this.scene.map.selected_building.tryToUpgrade(this);
 				}
 			});
 		},
@@ -385,6 +400,7 @@ _TD.a.push(function (TD) {
 			this.panel.btn_pause.hide();
 			this.panel.btn_upgrade.hide();
 			this.panel.btn_sell.hide();
+			this.panel.btn_build.hide();
 			this.panel.btn_restart.show();
 
 			var ctx = TD.ctx;

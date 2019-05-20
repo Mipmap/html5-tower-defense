@@ -4,13 +4,13 @@
  * Author: oldj <oldj.wu@gmail.com>
  * Blog: http://oldj.net/
  *
- * 默认关卡
+ * Default level
  */
 
 // _TD.a.push begin
 _TD.a.push(function (TD) {
 
-// main stage 初始化方法
+// main stage initialization method
 	var _stage_main_init = function () {
 			var act = new TD.Act(this, "act-1"),
 				scene = new TD.Scene(act, "scene-1"),
@@ -56,9 +56,8 @@ _TD.a.push(function (TD) {
 
 			if (this.map.monsters.length == 0) {
 				if (wave > 0 && this.wait_new_wave == this.config.wait_new_wave - 1) {
-					// 一波怪物刚刚走完
-					// 奖励生命值
-
+					// A wave of monsters just finished
+					// Reward health
 					var wave_reward = 0;
 					if (wave % 10 == 0) {
 						wave_reward = 10;
@@ -107,38 +106,6 @@ _TD.a.push(function (TD) {
 					entrance: [0, 0],
 					exit: [15, 15],
 					grids_cfg: []
-
-					// grids_cfg: [
-					// 	{
-					// 		pos: [3, 3],
-					// 		//building: "cannon",
-					// 		passable_flag: 0
-					// 	},
-					// 	{
-					// 		pos: [7, 15],
-					// 		build_flag: 0
-					// 	},
-					// 	{
-					// 		pos: [4, 12],
-					// 		building: "wall"
-					// 	},
-					// 	{
-					// 		pos: [4, 13],
-					// 		building: "wall"
-					// 		//}, {
-					// 		//pos: [11, 9],
-					// 		//building: "cannon"
-					// 		//}, {
-					// 		//pos: [5, 2],
-					// 		//building: "HMG"
-					// 		//}, {
-					// 		//pos: [14, 9],
-					// 		//building: "LMG"
-					// 		//}, {
-					// 		//pos: [3, 14],
-					// 		//building: "LMG"
-					// 	}
-					// ]
 				},
 				panel: {
 					x: TD.padding * 2 + TD.grid_size * 16,
@@ -151,11 +118,11 @@ _TD.a.push(function (TD) {
 						grids_cfg: [
 							{
 								pos: [0, 0],
-								building: "cannon"
+								building: "LMG"
 							},
 							{
 								pos: [1, 0],
-								building: "LMG"
+								building: "cannon"
 							},
 							{
 								pos: [2, 0],
@@ -174,25 +141,25 @@ _TD.a.push(function (TD) {
 				},
 				config: {
 					endless: true,
-					wait_new_wave: TD.exp_fps * 3, // 经过多少 step 后再开始新的一波
-					difficulty: 1.0, // 难度系数
+					wait_new_wave: TD.exp_fps * 3, // After a few steps, start a new wave.
+					difficulty: 1.0, // degree of difficulty
 					wave: 0,
 					max_wave: -1,
-					wave_damage: 0, // 当前一波怪物造成了多少点生命值的伤害
-					max_monsters_per_wave: 100, // 每一波最多多少怪物
-					money: 1000000,
-					score: 0, // 开局时的积分
+					wave_damage: 0, // How many points of health damage caused by a current wave of monsters
+					max_monsters_per_wave: 100, // How many monsters per wave
+					money: 100000000,
+					score: 0, // Points at the start
 					life: 100,
-					waves: [ // 这儿只定义了前 10 波怪物，从第 11 波开始自动生成
+					waves: [ // Here only the first 10 wave monsters are defined, automatically generated from the 11th wave.
 						[],
-						// 第一个参数是没有用的（第 0 波）
+						// The first parameter is useless (0th wave)
 
-						// 第一波
+						// wave 1
 						[
 							[1, 0] // 1 个 0 类怪物
 						],
 
-						// 第二波
+						// wave 2
 						[
 							[1, 0], // 1 个 0 类怪物
 							[1, 1] // 1 个 1 类怪物
@@ -253,7 +220,7 @@ _TD.a.push(function (TD) {
 				},
 
 				/**
-				 * 生成第 n 波怪物的方法
+				 * Method of generating the nth wave monster
 				 */
 				newWave: function (cfg) {
 					cfg = cfg || {};
@@ -262,11 +229,11 @@ _TD.a.push(function (TD) {
 					//difficulty = TD.difficulty || 1.0,
 						wave_damage = TD.wave_damage || 0;
 
-					// 自动调整难度系数
+					// Automatic adjustment of difficulty factor
 					if (wave == 1) {
 						//pass
 					} else if (wave_damage == 0) {
-						// 没有造成伤害
+						// Did not cause damage
 						if (wave < 5) {
 							TD.difficulty *= 1.05;
 						} else if (TD.difficulty > 30) {
@@ -283,7 +250,7 @@ _TD.a.push(function (TD) {
 					} else if (TD.wave_damage >= 10) {
 						TD.difficulty *= 0.9;
 					} else {
-						// 造成了 10 点以内的伤害
+						// Caused damage within 10 points
 						if (wave >= 10)
 							TD.difficulty *= 1.05;
 					}
@@ -291,11 +258,8 @@ _TD.a.push(function (TD) {
 
 					TD.log("wave " + wave + ", last wave damage = " + wave_damage + ", difficulty = " + TD.difficulty);
 
-					//map.addMonsters(100, 7);
-					//map.addMonsters2([[10, 7], [5, 0], [5, 5]]);
-					//
 					var wave_data = this.config.waves[wave] ||
-							// 自动生成怪物
+						// Automatically generate monsters
 						TD.makeMonsters(Math.min(
 							Math.floor(Math.pow(wave, 1.1)),
 							this.config.max_monsters_per_wave
